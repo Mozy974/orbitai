@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OrbitAI — Veille IA Locale</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink:     #1c1a2e;
+      --muted:   #7a7893;
+      --soft:    #f0ecfa;
+      --gold:    #c9a84c;
+      --rose:    #e8738a;
+      --sky:     #5bb8f5;
+      --sage:    #6dbf9e;
+      --purple:  #7c5cbf;
+      --primary: #7c5cbf;
+      --card-bg: rgba(255,255,255,0.82);
+      --shadow:  0 8px 32px rgba(80,60,140,0.10);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Sans', sans-serif;
+      background: linear-gradient(135deg, #ede8f7 0%, #e3daf5 50%, #f5f0ff 100%);
+      padding: 2rem;
+    }
+
+    .dashboard {
+      max-width: 800px;
+      width: 100%;
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 2.5rem;
+      border: 1px solid rgba(124,92,191,0.12);
+    }
+
+    .dashboard-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(124,92,191,0.15);
+    }
+
+    .dashboard-header .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.5px;
+    }
+
+    .dashboard-header .logo span {
+      color: var(--purple);
+    }
+
+    .dashboard-header .subtitle {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .stats-row {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      flex: 1;
+      background: white;
+      border-radius: 16px;
+      padding: 1.2rem 1.5rem;
+      box-shadow: 0 4px 16px rgba(80,60,140,0.06);
+      border: 1px solid rgba(124,92,191,0.08);
+    }
+
+    .stat-card .stat-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--purple);
+      line-height: 1;
+    }
+
+    .stat-card .stat-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.3rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .insights-section h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--ink);
+      margin-bottom: 1rem;
+    }
+
+    #insightsList {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      max-height: 400px;
+      overflow-y: auto;
+      padding-right: 0.5rem;
+    }
+
+    #insightsList li {
+      padding: 1rem 1.2rem;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--ink);
+      border: 1px solid rgba(124,92,191,0.08);
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    #emptyState {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .chat-container {
+      background: #fafafa;
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid #eee;
+      margin-top: 2rem;
+    }
+
+    .chat-container h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--ink);
+    }
+
+    .chat-input-row {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    #aiPrompt {
+      flex: 1;
+      padding: 0.8rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-family: inherit;
+      font-size: 0.9rem;
+    }
+
+    #askAiBtn {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    #askAiBtn:hover:not(:disabled) {
+      transform: scale(1.03);
+    }
+
+    #askAiBtn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    #aiLoading {
+      display: none;
+      color: #666;
+      font-style: italic;
+      margin-top: 1rem;
+    }
+
+    .actions-row {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      justify-content: flex-end;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--purple);
+      color: var(--purple);
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.85rem;
+      transition: background 0.2s;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(124,92,191,0.08);
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <!-- Header -->
+    <div class="dashboard-header">
+      <div>
+        <div class="logo">Orbit<span>AI</span></div>
+        <div class="subtitle">Veille intelligente — 100% locale</div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-value" id="ideasCount">0</div>
+        <div class="stat-label">Analyses générées</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="modelName">llama3.2</div>
+        <div class="stat-label">Modèle actif</div>
+      </div>
+    </div>
+
+    <!-- Chat IA -->
+    <div class="chat-container">
+      <h3>💬 Interroger l'IA locale</h3>
+      <div style="display: flex; gap: 1rem; align-items: center; margin-top: 0.8rem;">
+        <label for="modelSelect" style="font-size: 0.85rem; color: var(--muted); white-space: nowrap;">Modèle :</label>
+        <select id="modelSelect" style="padding: 0.5rem 0.8rem; border-radius: 8px; border: 1px solid #ccc; font-family: inherit; font-size: 0.85rem; background: white; min-width: 180px;">
+          <option value="">Chargement...</option>
+        </select>
+      </div>
+      <div class="chat-input-row">
+        <input type="text" id="aiPrompt" placeholder="Demande une analyse ou résume un article..." />
+        <button id="askAiBtn">Envoyer</button>
+      </div>
+      <p id="aiLoading">🧠 L'IA réfléchit (ça tourne sur ta machine)...</p>
+    </div>
+
+    <!-- Insights -->
+    <div class="insights-section" style="margin-top: 2rem;">
+      <h3>🔍 Dernières idées</h3>
+      <ul id="insightsList"></ul>
+      <div id="emptyState" style="display: none;">
+        <p>✨ Aucune analyse pour le moment. Pose une question ci-dessus !</p>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="actions-row">
+      <button class="btn-secondary" onclick="downloadData()">📥 Exporter les données</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
