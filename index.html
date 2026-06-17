@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OrbitAI — Veille IA 100% Locale</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══ Nav ═══════════════════════════════════════ -->
+  <nav class="nav">
+    <a href="/" class="nav-brand">
+      <img src="assets/logo.svg" alt="OrbitAI logo" width="36" height="36" />
+      Orbit<span>AI</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#features">Fonctionnalités</a></li>
+      <li><a href="#demo">Démo</a></li>
+      <li><a href="https://github.com/Mozy974/orbitai" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+  </nav>
+
+  <!-- ═══ Hero ══════════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero-badge">🔬 100% local · zéro cloud</div>
+    <h1>
+      Votre veille IA<br />
+      <span class="gradient">intelligente et privée</span>
+    </h1>
+    <p>
+      OrbitAI analyse l'actualité IA en temps réel sur votre machine.
+      Pas de données qui partent, pas d'abonnement, pas de limite.
+      Juste Ollama, votre GPU, et des insights actionnables.
+    </p>
+    <div class="hero-actions">
+      <a href="#demo" class="btn-primary">
+        ⚡ Commencer la veille
+      </a>
+      <a href="#features" class="btn-outline">
+        🔍 Découvrir les features
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══ Features ══════════════════════════════════ -->
+  <section class="features" id="features">
+    <h2>Pourquoi OrbitAI ?</h2>
+    <p class="features-subtitle">Quatre piliers pour une veille IA souveraine</p>
+
+    <div class="feature-grid">
+
+      <!-- Card 1: Privacy -->
+      <div class="feature-card">
+        <div class="feature-icon" style="background: rgba(124,92,191,0.12); color: var(--purple);">
+          🔒
+        </div>
+        <h3>Confidentialité totale</h3>
+        <p>
+          Tout tourne en local via Ollama. Vos prompts, vos analyses, vos données —
+          rien ne quitte votre machine. Zéro télémétrie, zéro cloud.
+        </p>
+      </div>
+
+      <!-- Card 2: Multi-model -->
+      <div class="feature-card">
+        <div class="feature-icon" style="background: rgba(91,184,245,0.12); color: var(--sky);">
+          🧠
+        </div>
+        <h3>Multi-modèles</h3>
+        <p>
+          Basculez entre llama3.2, deepseek, gemma, qwen et 20+ autres modèles
+          en un clic. Chaque modèle a ses forces — choisissez le bon pour chaque tâche.
+        </p>
+      </div>
+
+      <!-- Card 3: Insights -->
+      <div class="feature-card">
+        <div class="feature-icon" style="background: rgba(201,168,76,0.12); color: var(--gold);">
+          💡
+        </div>
+        <h3>Insights actionnables</h3>
+        <p>
+          L'IA ne se contente pas de résumer — elle extrait les tendances,
+          détecte les signaux faibles, et vous alerte sur ce qui compte vraiment.
+        </p>
+      </div>
+
+      <!-- Card 4: Open Source -->
+      <div class="feature-card">
+        <div class="feature-icon" style="background: rgba(109,191,158,0.12); color: var(--sage);">
+          📖
+        </div>
+        <h3>Open source</h3>
+        <p>
+          Code auditable, zéro boîte noire. Forkez, customisez, contribuez.
+          OrbitAI est le vôtre — pas celui d'une startup qui pivote dans 6 mois.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ Demo (chat + insights) ════════════════════ -->
+  <section id="demo" style="max-width: 800px; margin: 0 auto 4rem; padding: 0 2rem;">
+    <div class="dashboard" style="background: var(--card-bg); backdrop-filter: blur(20px); border-radius: 24px; box-shadow: var(--shadow); padding: 2.5rem; border: 1px solid rgba(124,92,191,0.12);">
+
+      <!-- Stats -->
+      <div class="stats-row" style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+        <div class="stat-card" style="flex: 1; background: white; border-radius: 16px; padding: 1.2rem 1.5rem; box-shadow: 0 4px 16px rgba(80,60,140,0.06); border: 1px solid rgba(124,92,191,0.08);">
+          <div class="stat-value" id="ideasCount" style="font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: var(--purple);">0</div>
+          <div class="stat-label" style="font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px;">Analyses générées</div>
+        </div>
+        <div class="stat-card" style="flex: 1; background: white; border-radius: 16px; padding: 1.2rem 1.5rem; box-shadow: 0 4px 16px rgba(80,60,140,0.06); border: 1px solid rgba(124,92,191,0.08);">
+          <div class="stat-value" id="modelName" style="font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: var(--purple);">llama3.2</div>
+          <div class="stat-label" style="font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px;">Modèle actif</div>
+        </div>
+      </div>
+
+      <!-- Chat -->
+      <div class="chat-container" style="background: #fafafa; padding: 1.5rem; border-radius: 12px; border: 1px solid #eee;">
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--ink);">💬 Interroger l'IA locale</h3>
+        <div style="display: flex; gap: 1rem; align-items: center; margin-top: 0.8rem;">
+          <label for="modelSelect" style="font-size: 0.85rem; color: var(--muted); white-space: nowrap;">Modèle :</label>
+          <select id="modelSelect" style="padding: 0.5rem 0.8rem; border-radius: 8px; border: 1px solid #ccc; font-family: inherit; font-size: 0.85rem; background: white; min-width: 180px;">
+            <option value="">Chargement...</option>
+          </select>
+        </div>
+        <div class="chat-input-row" style="display: flex; gap: 1rem; margin-top: 1rem;">
+          <input type="text" id="aiPrompt" placeholder="Demande une analyse ou résume un article..." style="flex: 1; padding: 0.8rem; border-radius: 8px; border: 1px solid #ccc; font-family: inherit; font-size: 0.9rem;" />
+          <button id="askAiBtn" style="background: var(--primary); color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: bold; cursor: pointer; font-family: inherit; transition: transform 0.2s, opacity 0.2s;">Envoyer</button>
+        </div>
+        <p id="aiLoading" style="display: none; color: #666; font-style: italic; margin-top: 1rem;">🧠 L'IA réfléchit (ça tourne sur ta machine)...</p>
+      </div>
+
+      <!-- Insights -->
+      <div class="insights-section" style="margin-top: 2rem;">
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--ink); margin-bottom: 1rem;">🔍 Dernières idées</h3>
+        <ul id="insightsList" style="list-style: none; display: flex; flex-direction: column; gap: 0.6rem; max-height: 400px; overflow-y: auto; padding-right: 0.5rem;"></ul>
+        <div id="emptyState" style="text-align: center; padding: 2rem; color: var(--muted); font-style: italic;">
+          <p>✨ Aucune analyse pour le moment. Pose une question ci-dessus !</p>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="actions-row" style="display: flex; gap: 1rem; margin-top: 2rem; justify-content: flex-end;">
+        <button class="btn-outline" onclick="downloadData()">📥 Exporter les données</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ CTA Banner ════════════════════════════════ -->
+  <section class="cta-banner">
+    <h2>Prêt à reprendre le contrôle de votre veille ?</h2>
+    <p>
+      Une machine, Ollama, et 5 minutes. C'est tout ce qu'il faut pour
+      remplacer vos 12 onglets Google Scholar par une IA qui bosse pour vous.
+    </p>
+    <a href="https://github.com/Mozy974/orbitai" target="_blank" rel="noopener" class="btn-primary">
+      ⭐ Installer OrbitAI
+    </a>
+  </section>
+
+  <!-- ═══ Footer ════════════════════════════════════ -->
+  <footer class="footer">
+    <p>
+      OrbitAI · 100% local · <a href="https://github.com/Mozy974/orbitai">GitHub</a> ·
+      Construit avec Ollama + ❤️
+    </p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>

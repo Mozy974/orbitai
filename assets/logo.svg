@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Orbital ring -->
+  <circle cx="32" cy="32" r="28" stroke="url(#g1)" stroke-width="2.5" fill="none" stroke-dasharray="8 6"/>
+  <circle cx="32" cy="32" r="20" stroke="url(#g2)" stroke-width="1.5" fill="none" opacity="0.6"/>
+
+  <!-- Core planet -->
+  <circle cx="32" cy="32" r="10" fill="url(#g3)"/>
+  <circle cx="32" cy="32" r="10" fill="url(#g4)" opacity="0.4"/>
+
+  <!-- Orbiting dot -->
+  <circle cx="54" cy="18" r="3.5" fill="#c9a84c">
+    <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="360 32 32" dur="6s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- AI spark -->
+  <path d="M28 28l2 6 6 2-6 2-2 6-2-6-6-2 6-2z" fill="#e8738a" opacity="0.9">
+    <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+  </path>
+
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="64" y2="64">
+      <stop offset="0%" stop-color="#7c5cbf"/>
+      <stop offset="100%" stop-color="#5bb8f5"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="64" y1="0" x2="0" y2="64">
+      <stop offset="0%" stop-color="#c9a84c"/>
+      <stop offset="100%" stop-color="#e8738a"/>
+    </linearGradient>
+    <radialGradient id="g3" cx="0.4" cy="0.3">
+      <stop offset="0%" stop-color="#7c5cbf"/>
+      <stop offset="100%" stop-color="#1c1a2e"/>
+    </radialGradient>
+    <radialGradient id="g4" cx="0.6" cy="0.7">
+      <stop offset="0%" stop-color="#c9a84c" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#c9a84c" stop-opacity="0.6"/>
+    </radialGradient>
+  </defs>
+</svg>
